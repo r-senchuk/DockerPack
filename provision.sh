@@ -68,7 +68,7 @@ SCRIPT
         grep "source ~/scripts/aliases.sh" < ~/$SOURCE_FILE > /dev/null 2>&1 || echo 'source ~/scripts/aliases.sh' >> ~/$SOURCE_FILE
     fi
 
-    sudo mkdir -p /ssl_certs && cp ssl_certs /ssl_certs
+    sudo mkdir -p /ssl_certs && sudo cp ssl_certs/* /ssl_certs
 elif [ "$(expr substr $(uname -s) 1 6)" == "CYGWIN" ]; then
     scp -q dockers/aliases.sh docker@192.168.10.10:/home/docker/scripts
     scp -q -r ssl_certs/* docker@192.168.10.10:/ssl_certs/
