@@ -58,7 +58,7 @@ else ifeq ($(UNAME_S),Darwin)
 else ifeq ($(UNAME_S),Linux)
 	curl -sSL https://get.docker.com/ | sh
 	# Install docker-compose
-	sudo curl -L https://github.com/docker/compose/releases/download/$(DOCKER_COMPOSE_VERSION)/docker-compose-$(UNAME_S)-$(UNAME_M) > /usr/local/bin/docker-compose
+	curl -L https://github.com/docker/compose/releases/download/$(DOCKER_COMPOSE_VERSION)/docker-compose-$(UNAME_S)-$(UNAME_M) | sudo tee /usr/local/bin/docker-compose >/dev/null
 	chmod +x /usr/local/bin/docker-compose
 endif
 
