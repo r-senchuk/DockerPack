@@ -57,6 +57,9 @@ else ifeq ($(UNAME_S),Darwin)
 	chmod +x /usr/local/bin/docker
 else ifeq ($(UNAME_S),Linux)
 	curl -sSL https://get.docker.com/ | sh
+	# Install docker-compose
+	curl -L https://github.com/docker/compose/releases/download/$(DOCKER_COMPOSE_VERSION)/docker-compose-$(UNAME_S)-$(UNAME_M) > /usr/local/bin/docker-compose
+	chmod +x /usr/local/bin/docker-compose
 endif
 
 build-docker-machine:
