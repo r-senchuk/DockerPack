@@ -51,15 +51,15 @@ else ifeq ($(UNAME_S),Darwin)
 	sudo mv -f docker-machine* /usr/local/bin
 	# Install docker-compose
 	sudo curl -L https://github.com/docker/compose/releases/download/$(DOCKER_COMPOSE_VERSION)/docker-compose-$(UNAME_S)-$(UNAME_M) > /usr/local/bin/docker-compose
-	chmod +x /usr/local/bin/docker-compose
+	sudo chmod +x /usr/local/bin/docker-compose
 	# Install docker
 	sudo curl -L https://get.docker.com/builds/$(UNAME_S)/$(UNAME_M)/docker-1.9.0 > /usr/local/bin/docker
-	chmod +x /usr/local/bin/docker
+	sudo chmod +x /usr/local/bin/docker
 else ifeq ($(UNAME_S),Linux)
 	curl -sSL https://get.docker.com/ | sh
 	# Install docker-compose
 	curl -L https://github.com/docker/compose/releases/download/$(DOCKER_COMPOSE_VERSION)/docker-compose-$(UNAME_S)-$(UNAME_M) | sudo tee /usr/local/bin/docker-compose >/dev/null
-	chmod +x /usr/local/bin/docker-compose
+	sudo chmod +x /usr/local/bin/docker-compose
 endif
 
 build-docker-machine:
