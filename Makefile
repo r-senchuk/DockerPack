@@ -48,17 +48,17 @@ else ifeq ($(UNAME_S),Darwin)
 	curl -L https://github.com/docker/machine/releases/download/v$(DOCKER_MACHINE_VERSION)/docker-machine_darwin-amd64.zip >machine.zip && \
 	unzip machine.zip && \
 	rm machine.zip && \
-	mv -f docker-machine* /usr/local/bin
+	sudo mv -f docker-machine* /usr/local/bin
 	# Install docker-compose
-	curl -L https://github.com/docker/compose/releases/download/$(DOCKER_COMPOSE_VERSION)/docker-compose-$(UNAME_S)-$(UNAME_M) > /usr/local/bin/docker-compose
+	sudo curl -L https://github.com/docker/compose/releases/download/$(DOCKER_COMPOSE_VERSION)/docker-compose-$(UNAME_S)-$(UNAME_M) > /usr/local/bin/docker-compose
 	chmod +x /usr/local/bin/docker-compose
 	# Install docker
-	curl -L https://get.docker.com/builds/$(UNAME_S)/$(UNAME_M)/docker-1.9.0 > /usr/local/bin/docker
+	sudo curl -L https://get.docker.com/builds/$(UNAME_S)/$(UNAME_M)/docker-1.9.0 > /usr/local/bin/docker
 	chmod +x /usr/local/bin/docker
 else ifeq ($(UNAME_S),Linux)
 	curl -sSL https://get.docker.com/ | sh
 	# Install docker-compose
-	curl -L https://github.com/docker/compose/releases/download/$(DOCKER_COMPOSE_VERSION)/docker-compose-$(UNAME_S)-$(UNAME_M) > /usr/local/bin/docker-compose
+	sudo curl -L https://github.com/docker/compose/releases/download/$(DOCKER_COMPOSE_VERSION)/docker-compose-$(UNAME_S)-$(UNAME_M) > /usr/local/bin/docker-compose
 	chmod +x /usr/local/bin/docker-compose
 endif
 
