@@ -2,9 +2,9 @@
 
 if [ "$(uname)" == "Darwin" ]; then
     echo "Darwin detected"
-elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+elif [ "$(expr substr $(uname -s) 1 5 2>/dev/null)" == "Linux" ]; then
     echo "Linux detected"
-elif [ "$(expr substr $(uname -s) 1 6)" == "CYGWIN" ]; then
+elif [ "$(expr substr $(uname -s) 1 6 2>/dev/null)" == "CYGWIN" ]; then
     echo "Windows detected"
 fi
 
@@ -16,7 +16,7 @@ DOCKER_HOST_EXPORT='\n# Docker (default for Vagrant based boxes)\nexport DOCKER_
 if [[ $SHELL == '/bin/bash' || $SHELL == '/bin/sh' ]]; then SOURCE_FILE=".bash_profile"; fi
 if [[ $SHELL == '/bin/zsh' ]]; then	SOURCE_FILE=".zshrc"; fi
 
-if [ "$(expr substr $(uname -s) 1 5)" != "Linux" ]; then
+if [ "$(expr substr $(uname -s) 1 5 2>/dev/null)" != "Linux" ]; then
     if [[ $SOURCE_FILE ]]; then
         # See if we already did this and skip if so
         grep -q "export DOCKER_HOST=tcp://localhost:2375" $HOME/$SOURCE_FILE
@@ -34,7 +34,7 @@ fi
 if [ "$(uname)" == "Darwin" ]; then
     scp -q dockers/aliases.sh docker@192.168.10.10:/home/docker/scripts
     scp -q -r ssl_certs/* docker@192.168.10.10:/ssl_certs/
-elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+elif [ "$(expr substr $(uname -s) 1 5 2>/dev/null)" == "Linux" ]; then
     # Update docker daemon options and restart
     if sudo grep -q "^DOCKER_OPTS=" /etc/default/docker
     then
@@ -69,7 +69,7 @@ SCRIPT
     fi
 
     sudo mkdir -p /ssl_certs && sudo cp ssl_certs/* /ssl_certs
-elif [ "$(expr substr $(uname -s) 1 6)" == "CYGWIN" ]; then
+elif [ "$(expr substr $(uname -s) 1 6 2>/dev/null)" == "CYGWIN" ]; then
     scp -q dockers/aliases.sh docker@192.168.10.10:/home/docker/scripts
     scp -q -r ssl_certs/* docker@192.168.10.10:/ssl_certs/
 fi
@@ -85,7 +85,7 @@ then
     jderusse/dns-gen > /dev/null
 
     #setting DNS
-    if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]
+    if [ "$(expr substr $(uname -s) 1 5 2>/dev/null)" == "Linux" ]
     then
         sudo grep "nameserver 172.17.42.1" < /etc/resolv.conf > /dev/null 2>&1 || (echo "nameserver 172.17.42.1" | sudo cat - /etc/resolv.conf > temp && sudo mv temp /etc/resolv.conf)
     else
