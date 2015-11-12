@@ -6,6 +6,10 @@ Inside DockerPack some global containers are included:
 * jderusse/dns-gen     - provides dynamic DNS resolution for containers & docker host
 * sinopia - private nodejs repository for caching nodejs modules (makes npm install ultra-fast in docker)
 
+### Installation
+
+Differs depending on the OS. Please refer to wiki.
+
 ### Provision script usage
 
 * `provision.sh`  run everything
