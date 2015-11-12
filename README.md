@@ -8,7 +8,7 @@ Inside DockerPack some global containers are included:
 
 ### Installation
 
-Differs depending on the OS. Please refer to wiki.
+Differs depending on the OS. Please refer to [wiki](https://github.com/DataSyntax/DockerPack/wiki).
 
 ### Provision script usage
 
