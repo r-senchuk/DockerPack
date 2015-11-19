@@ -131,7 +131,7 @@ then
         sudo tee /etc/resolver/dev >/dev/null <<EOF
 nameserver 172.17.42.1
 EOF
-    endif
+    fi
 
     # Setting DNS (only for Linux or inside docker-host
     if [ "$(expr substr $(uname -s) 1 5 2>/dev/null)" == "Linux" ]
