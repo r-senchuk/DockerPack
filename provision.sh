@@ -126,6 +126,13 @@ then
     --dns 8.8.8.8 -v /var/run/docker.sock:/var/run/docker.sock \
     jderusse/dns-gen > /dev/null
 
+    if [ "$(uname)" == "Darwin" ]; then
+        sudo mkdir -p /etc/resolver
+        sudo tee /etc/resolver/dev >/dev/null <<EOF
+nameserver 172.17.42.1
+EOF
+    endif
+
     # Setting DNS (only for Linux or inside docker-host
     if [ "$(expr substr $(uname -s) 1 5 2>/dev/null)" == "Linux" ]
     then
