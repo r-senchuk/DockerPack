@@ -126,9 +126,10 @@ then
     --dns 8.8.8.8 -v /var/run/docker.sock:/var/run/docker.sock \
     jderusse/dns-gen > /dev/null
 
+    # For OSX we can configure DNS resolver automatically
     if [ "$(uname)" == "Darwin" ]; then
         sudo mkdir -p /etc/resolver
-        sudo tee /etc/resolver/dev >/dev/null <<EOF
+        sudo tee /etc/resolver/docker >/dev/null <<EOF
 nameserver 172.17.42.1
 EOF
     fi
