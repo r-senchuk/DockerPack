@@ -62,7 +62,7 @@ else ifeq ($(UNAME_S),Linux)
 	sudo chmod +x /usr/local/bin/docker-compose
 endif
 
-build-docker-machine:
+build-docker-machine: download-iso
 	VBoxManage controlvm $(MACHINE_NAME) poweroff | true
 	VBoxManage unregistervm $(MACHINE_NAME) --delete || true
 	docker-machine rm $(MACHINE_NAME) || true
